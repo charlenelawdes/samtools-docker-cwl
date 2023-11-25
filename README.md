@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/bwbioinfo/samtools-docker-cwl/workflows/build-and-push/badge.svg)](https://github.com/bwbioinfo/samtools-docker-cwl/actions)
+[![Build and Push Docker Image](https://github.com/bwbioinfo/samtools-docker-cwl/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/bwbioinfo/samtools-docker-cwl/actions/workflows/build-and-push.yml)
 
 # samtools-docker-cwl
 
