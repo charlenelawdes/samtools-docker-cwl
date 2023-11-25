@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/bwbioinfo/samtools-docker-cwl/workflows/build-and-push/badge.svg)](https://github.com/bwbioinfo/samtools-docker-cwl/actions)
+
 # samtools-docker-cwl
 
 This repository provides a [Common Workflow Language (CWL)](https://www.commonwl.org/) tool for running the samtools program. Samtools is packaged in a Docker container, allowing it to run on any system with Docker or Singularity installed.
