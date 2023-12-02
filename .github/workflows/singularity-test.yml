@@ -16,6 +16,10 @@ jobs:
         run: |
           echo "${{ env.REPO_NAME }}"
           echo "${{ env.REPO_OWNER }}"
+      - name: get conda
+        run: |
+          echo $(which conda)
+          echo $CONDA
       - name: Create Conda Env
         run: conda create -n test-singularity python=3.9 -y 
       - name: Activate Conda
