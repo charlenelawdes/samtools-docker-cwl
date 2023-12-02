@@ -24,7 +24,9 @@ jobs:
           echo $(which conda)
           echo $CONDA
       - name: Create Conda Env
-        run: conda create -n test-singularity python=3.9 -y 
+        run: |
+          conda init bash
+          conda create -n test-singularity python=3.9 -y 
       - name: Install Dependencies
         run: |
           conda activate test-singularity
