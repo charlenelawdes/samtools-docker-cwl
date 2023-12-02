@@ -20,13 +20,13 @@ jobs:
         run: |
           echo $(which conda)
           echo $CONDA
-      - name: Create Conda Env
-        run: conda create -n test-singularity python=3.9 -y 
-      - name: Activate Conda
-        run: $CONDA/bin/activate test-singularity
+      # - name: Create Conda Env
+      #   run: conda create -n test-singularity python=3.9 -y 
+      # - name: Activate Conda
+      #   run: $CONDA/bin/activate test-singularity
       - name: Install Dependencies
         run: |
-          conda install -c conda-forge -y singularity
+          $CONDA/bin/conda  install -c conda-forge -y singularity
           whereis singularity
       - name: Pull Singularity image
         run: singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
