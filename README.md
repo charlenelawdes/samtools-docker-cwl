@@ -1,4 +1,5 @@
 [![Build and Push Docker Image](https://github.com/bwbioinfo/samtools-docker-cwl/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/bwbioinfo/samtools-docker-cwl/actions/workflows/build-and-push.yml)
+[![Pull and Test Singularity Image](https://github.com/bwbioinfo/samtools-docker-cwl/actions/workflows/singularity-test.yml/badge.svg)](https://github.com/bwbioinfo/samtools-docker-cwl/actions/workflows/singularity-test.yml)
 
 # samtools-docker-cwl
 
