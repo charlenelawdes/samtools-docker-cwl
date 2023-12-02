@@ -55,6 +55,9 @@ jobs:
           wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-ce-${VERSION}.tar.gz 
           tar -xzf singularity-ce-${VERSION}.tar.gz
           cd singularity-ce-${VERSION}
+          ./mconfig
+          make -C ./builddir
+          sudo make -C ./builddir install
       - name: Pull Singularity image
         run: |
           singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
