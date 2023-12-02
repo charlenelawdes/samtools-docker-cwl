@@ -19,16 +19,42 @@ jobs:
         run: |
           echo "${{ env.REPO_NAME }}"
           echo "${{ env.REPO_OWNER }}"
-      - name: Set up Conda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: myenv
       - name: Install Dependencies
+        run: |          
+          apt-get update
+          apt-get install -y \
+          autoconf \
+          automake \
+          cryptsetup \
+          git \
+          libfuse-dev \
+          libglib2.0-dev \
+          libseccomp-dev \
+          libtool \
+          pkg-config \
+          runc \
+          squashfs-tools \
+          squashfs-tools-ng \
+          uidmap \
+          wget \
+          zlib1g-dev
+      - name: Install Go
         run: |
-          conda install -c conda-forge -y singularity
-          conda info
-          which singularity
-          singularity --version
+          export VERSION=1.21.1 OS=linux ARCH=amd64
+          wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
+          tar -C /usr/local -xzvf go$VERSION.$OS-$ARCH.tar.gz
+          rm go$VERSION.$OS-$ARCH.tar.gz
+      - name: Configure Go
+        run: |
+          echo 'export GOPATH=${HOME}/go' >> ~/.bashrc
+          echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc
+          source ~/.bashrc
+      - name: Install Singularity
+        run: |
+          export VERSION=4.0.0
+          wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-ce-${VERSION}.tar.gz 
+          tar -xzf singularity-ce-${VERSION}.tar.gz
+          cd singularity-ce-${VERSION}
       - name: Pull Singularity image
         run: |
           singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
