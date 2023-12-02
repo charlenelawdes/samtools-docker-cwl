@@ -26,6 +26,7 @@ jobs:
       - name: Create Conda Env
         run: |
           conda init bash
+          source ~/.bashrc
           conda create -n test-singularity python=3.9 -y 
       - name: Install Dependencies
         run: |
