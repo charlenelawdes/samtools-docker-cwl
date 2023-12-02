@@ -25,12 +25,10 @@ jobs:
           echo $CONDA
       - name: Create Conda Env
         run: conda create -n test-singularity python=3.9 -y 
-      - name: Activate Conda
-        run: $CONDA/bin/activate test-singularity
       - name: Install Dependencies
         run: |
-          $CONDA/bin/activate test-singularity
-          $CONDA/bin/conda  install -c conda-forge -y singularity
+          conda activate test-singularity
+          conda  install -c conda-forge -y singularity
           whereis singularity
       - name: Pull Singularity image
         run: |
