@@ -55,7 +55,6 @@ RUN echo 'alias bamstats="bamstats.sh"' >> ~/.bashrc
 RUN rm -rf /usr/local/src/samtools
 RUN dnf remove -y gcc make zlib-devel bzip2-devel xz-devel ncurses-devel libcurl-devel && \
     dnf clean all
-# Line to trigger Test
 
 # Set the default command to run Samtools
 CMD ["samtools"]

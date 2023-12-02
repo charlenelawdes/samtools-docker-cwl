@@ -7,8 +7,8 @@ jobs:
   test-singularity:
     runs-on: ubuntu-latest
     steps:
-      - uses: eWaterCycle/setup-singularity@v7
-        with:
-          singularity-version: 3.6.4
+      - name: Install Dependencies
+        run: |
+          conda install -c conda-forge -y singularity
       - name: Pull Singularity image
         run: singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
