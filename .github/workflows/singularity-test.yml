@@ -27,5 +27,6 @@ jobs:
       - name: Install Dependencies
         run: |
           conda install -c conda-forge -y singularity
+          whereis singularity
       - name: Pull Singularity image
         run: singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
