@@ -1,0 +1,2 @@
+# Example YAML input file testing samtools help
+command: "help"
