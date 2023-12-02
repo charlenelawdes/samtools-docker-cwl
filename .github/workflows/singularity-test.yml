@@ -2,8 +2,7 @@ name: Pull and Test Singularity Image
 on:
   workflow_run:
     workflows: [Build and Push Docker Image]
-    types:
-      - completed
+    types: [completed]
 jobs:
   test-singularity:
     runs-on: ubuntu-latest
