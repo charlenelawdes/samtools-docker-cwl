@@ -1,7 +1,7 @@
 name: Test Singularity Image
 on:
   registry_package:
-    types: [published]
+    types: [created, published, edited]
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
