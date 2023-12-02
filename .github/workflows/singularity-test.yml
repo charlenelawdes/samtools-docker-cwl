@@ -8,8 +8,18 @@ jobs:
   test-singularity:
     runs-on: ubuntu-latest
     steps:
+      - name: get-name
+        run: |
+          echo "REPO_NAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
+          echo "REPO_OWNER=$(echo ${{ github.repository_owner}} | tr '[:upper:]' '[:lower:]' )" >> $GITHUB_ENV
+      - name: print-name
+        run: |
+          echo "${{ env.REPO_NAME }}"
+          echo "${{ env.REPO_OWNER }}"
+      - name: Activate Conda
+        run: conda activate 
       - name: Install Dependencies
         run: |
           conda install -c conda-forge -y singularity
       - name: Pull Singularity image
-        run: conda activate && singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
+        run: singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
