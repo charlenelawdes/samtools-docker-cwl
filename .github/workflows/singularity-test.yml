@@ -21,6 +21,7 @@ jobs:
           echo $(which conda)
           echo $CONDA
           conda init bash
+          source ~/.bashrc
       - name: Create Conda Env
         run: conda create -n test-singularity python=3.9 -y 
       - name: Activate Conda
