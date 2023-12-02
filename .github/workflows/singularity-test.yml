@@ -19,16 +19,16 @@ jobs:
         run: |
           echo "${{ env.REPO_NAME }}"
           echo "${{ env.REPO_OWNER }}"
-      - name: get conda
-        run: |
-          echo $(which conda)
-          echo $CONDA
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: myenv
       - name: Install Dependencies
         run: |
-          $CONDA/bin/activate
           conda install -c conda-forge -y singularity
           conda info
-          whereis singularity
+          which singularity
+          singularity --version
       - name: Pull Singularity image
         run: |
           singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
