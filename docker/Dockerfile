@@ -48,8 +48,8 @@ RUN samtools --version
 WORKDIR /
 COPY scripts/* /usr/local/bin/
 RUN chmod a+x /usr/local/bin/*.sh
-RUN echo 'alias multimerge="samtools_multi_merge_v2.sh"' >> ~/.bashrc
-RUN echo 'alias bamstats="bamstats.sh"' >> ~/.bashrc
+RUN echo 'alias multimerge="/usr/local/bin/samtools_multi_merge_v2.sh"' >> ~/.bashrc
+RUN echo 'alias bamstats="/usr/local/bin/bamstats.sh"' >> ~/.bashrc
 
 # Clean up
 RUN rm -rf /usr/local/src/samtools
