@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Print Output
-      run: echo ${{ fromJson(needs.list-tests.outputs.list-matrix) }}
+      run: echo ${{ needs.list-tests.outputs.list-matrix }}
   test-cwl:
     needs: list-tests
     strategy:
