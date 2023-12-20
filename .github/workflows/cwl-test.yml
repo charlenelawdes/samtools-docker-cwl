@@ -16,6 +16,12 @@ jobs:
         test-file-extension: cwl
     outputs: 
         tests-matrix: ${{ steps.list-tests.outputs.tests-matrix }}
+  print-output:
+    needs: list-tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print Output
+      run: echo ${{ needs.list-tests.outputs.tests-matrix }}
   test-cwl:
     needs: list-tests
     strategy:
