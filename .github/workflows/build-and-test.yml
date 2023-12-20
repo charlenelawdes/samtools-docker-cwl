@@ -40,12 +40,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.REPO_NAME }}
-          path: /var/lib/docker/tmp/
+          path: /tmp/
       - name: Veriify File Exists
         run: |
           ls -l /tmp/${{ env.REPO_NAME }}.tar
           stat /tmp/${{ env.REPO_NAME }}.tar
       - name: Load image
         run: |
-          docker load --input /tmp/${{ env.REPO_NAME }}.tar
+          cat /tmp/${{ env.REPO_NAME }}.tar | docker import - ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest 
           docker image ls -a
