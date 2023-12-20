@@ -28,7 +28,7 @@ jobs:
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest]
-          tests: ${{ fromJson(needs.list-tests.outputs.list-matrix) }}
+          tests: ${{ needs.list-tests.outputs.list-matrix }}
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout code
