@@ -8,12 +8,12 @@ jobs:
   list-tests:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      tests-matrix: ${{ steps.set-matrix.outputs.tests-matrix }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - id: set-matrix
       run: |
-        echo "::set-output name=matrix::$(ls tests/*.cwl | jq -R -s -c 'split("\n")[:-1]')"
+        echo "{tests-matrix}={$(ls tests/*.cwl | jq -R -s -c 'split("\n")[:-1]')}"
     - name: Show matrix
       run: |
         echo ${{ steps.set-matrix.outputs.matrix }}
@@ -22,7 +22,7 @@ jobs:
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest]
-          tests: ${{ fromJson(needs.list-tests.outputs.matrix) }}
+          tests: ${{ fromJson(needs.list-tests.outputs.tests-matrix) }}
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout code
