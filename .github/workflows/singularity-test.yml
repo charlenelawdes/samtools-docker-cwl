@@ -11,14 +11,6 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - name: get-name
-        run: |
-          echo "REPO_NAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
-          echo "REPO_OWNER=$(echo ${{ github.repository_owner}} | tr '[:upper:]' '[:lower:]' )" >> $GITHUB_ENV
-      - name: print-name
-        run: |
-          echo "${{ env.REPO_NAME }}"
-          echo "${{ env.REPO_OWNER }}"
       - name: Install Dependencies
         run: |          
           sudo apt-get update
@@ -58,6 +50,6 @@ jobs:
           ./mconfig
           make -C ./builddir
           sudo make -C ./builddir install
-      - name: Pull Singularity image
+      - name: Get Singularity Version
         run: |
-          singularity pull docker://ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest
+          singularity --version

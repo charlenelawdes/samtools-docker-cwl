@@ -1,9 +1,9 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    paths:
-      - "docker/*"
+  workflow_run:
+    workflows: [Build and Test Docker Image]
+    types: [completed]
     branches:
       - main
   workflow_dispatch:

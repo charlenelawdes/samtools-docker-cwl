@@ -31,11 +31,9 @@ jobs:
           tests: ${{ fromJson(needs.list-tests.outputs.list-matrix) }}
     runs-on: ${{ matrix.os }}
     steps:
-    - name: Print Test
-      run: echo ${{ matrix.tests[0] }}
     - name: Checkout code
       uses: actions/checkout@v3
-    - name: Setup Python
+    - name: Run CWL Tests
       uses: bwbioinfo/docker-cwl-action@main
       with:
         test-file: ${{ matrix.tests[0] }}
