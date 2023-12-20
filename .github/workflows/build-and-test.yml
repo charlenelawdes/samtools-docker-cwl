@@ -19,8 +19,8 @@ jobs:
           echo "REPO_OWNER=$(echo ${{ github.repository_owner}} | tr '[:upper:]' '[:lower:]' )" >> $GITHUB_ENV
       - name: Build Docker image
         run: |
-          docker build --output type=tar,dest=/tmp/${{ env.REPO_NAME }}.tar\
-          -t ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest . -f docker/Dockerfile
+          docker build \
+          -t ghcr.io/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}:latest --output type=tar,dest=/tmp/${{ env.REPO_NAME }}.tar . -f docker/Dockerfile
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
