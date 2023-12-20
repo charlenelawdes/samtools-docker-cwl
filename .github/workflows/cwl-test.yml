@@ -14,12 +14,14 @@ jobs:
         test-file-directory: tests
         inputs-file-extension: yml
         test-file-extension: cwl
+    outputs: 
+        tests-matrix: ${{ steps.list-tests.outputs.tests-matrix }}
   test-cwl:
     needs: list-tests
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest]
-          tests: ${{ fromJson(needs.list-tests.outputs.tests-matrix) }}
+          tests: ${{ needs.list-tests.outputs.tests-matrix }}
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout code
