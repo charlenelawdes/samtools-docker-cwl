@@ -1,0 +1,24 @@
+name: Test CWL
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build-and-push:
+    strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      run: |
+        pip install cwltool
+    - name: Run CWL
+      run: |
+        cwltool --version
+    - name: Get Docker Version
+      run: |
+        docker --version
