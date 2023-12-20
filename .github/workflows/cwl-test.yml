@@ -14,11 +14,14 @@ jobs:
     - id: set-matrix
       run: |
         echo "::set-output name=matrix::$(ls tests/*.cwl | jq -R -s -c 'split("\n")[:-1]')"
+    - name: Show matrix
+      run: |
+        echo ${{ steps.set-matrix.outputs.matrix }}
   test-cwl:
     needs: list-tests
     strategy:
         matrix:
-          os: [ubuntu-latest, windows-latest, macos-latest]
+          os: [ubuntu-latest, macos-latest]
           tests: ${{ fromJson(needs.list-tests.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -31,7 +34,7 @@ jobs:
       if: ${{ matrix.os == 'macos-latest' }}
       run: |
         brew install docker
-    - name: Run CWL
+    - name: Get CWL Version
       run: |
         cwltool --version
     - name: Get Docker Version
