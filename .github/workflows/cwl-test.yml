@@ -28,22 +28,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Setup Python
-      run: |
-        pip install cwltool
-    - name: Setup Docker
-      if: ${{ matrix.os == 'macos-latest' }}
-      run: |
-        brew install docker
-    - name: Get CWL Version
-      run: |
-        echo "# cwl version" >> $GITHUB_STEP_SUMMARY
-        echo "`$(cwltool --version)`" >> $GITHUB_STEP_SUMMARY
-    - name: Get Docker Version
-      run: |
-        echo "# docker version" >> $GITHUB_STEP_SUMMARY
-        echo "`$(docker --version)`" >> $GITHUB_STEP_SUMMARY
-    - name: Run CWL
-      run: |
-        echo "# Run tests" >> $GITHUB_STEP_SUMMARY
-        echo " ${{ matrix.tests[0] }} " >> $GITHUB_STEP_SUMMARY
-        echo cwltool --verbose --docker ${{ matrix.tests[0] }} --input ${{ matrix.tests[1] }}
+      uses: bwbioinfo/docker-cwl-action@main
+      with:
+        test-files: ${{ matrix.tests[0] }}
+        input-files: ${{ matrix.tests[1] }}
