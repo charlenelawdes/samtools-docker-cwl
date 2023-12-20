@@ -16,19 +16,19 @@ jobs:
         inputs-file-extension: yml
         test-file-extension: cwl
     outputs:
-      list-matrix: ${{ steps.list-tests.outputs }}
+      list-matrix: ${{ steps.list-tests.outputs.tests-matrix }}
   print-output:
     needs: list-tests
     runs-on: ubuntu-latest
     steps:
     - name: Print Output
-      run: echo ${{ fromJson(needs.list-tests.outputs) }}
+      run: echo ${{ fromJson(needs.list-tests.outputs.list-matrix) }}
   test-cwl:
     needs: list-tests
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest]
-          tests: ${{ fromJson(needs.list-tests.outputs) }}
+          tests: ${{ fromJson(needs.list-tests.outputs.list-matrix) }}
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout code
