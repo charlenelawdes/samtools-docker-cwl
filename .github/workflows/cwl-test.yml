@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Print Output
-      run: echo ${{ needs.list-tests.outputs }}
+      run: echo ${{ fromJson(needs.list-tests.outputs) }}
   test-cwl:
     needs: list-tests
     strategy:
