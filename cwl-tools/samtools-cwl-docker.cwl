@@ -30,5 +30,5 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: "ghcr.io/bwbioinfo/samtools:latest"
+    dockerPull: "ghcr.io/bwbioinfo/samtools-docker-cwl:latest"
 
