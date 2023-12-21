@@ -2,8 +2,8 @@ name: Build and Test Docker Image
 
 on:
   push:
-    # paths:
-    #   - "docker/*"
+    paths:
+      - "docker/*"
   workflow_dispatch:
   pull_request:
     types: [opened, reopened]
